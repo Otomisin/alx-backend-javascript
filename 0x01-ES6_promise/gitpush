@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+shopt -s dotglob
 
 for file in ./*; do
-    if [ -f "$file" ]; then
+    if [[ -f "$file" || -d "$file" ]]; then
         filename=$(basename "$file")
         message="Task ${filename%.*}"
         git add "$file"
@@ -10,4 +12,3 @@ for file in ./*; do
 done
 
 git push
-
